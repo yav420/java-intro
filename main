@@ -1,4 +1,6 @@
-{
+import java.util.Scanner;
+
+public class Main {
 
     // Задание 1: FizzBuzz от 1 до 500
     public static String fizzBuzz() {
