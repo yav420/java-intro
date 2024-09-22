@@ -1,0 +1,124 @@
+{
+
+    // Задание 1: FizzBuzz от 1 до 500
+    public static String fizzBuzz() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 1; i <= 500; i++) {
+            if (i % 5 == 0 && i % 7 == 0) {
+                result.append("fizzbuzz\n");
+            } else if (i % 5 == 0) {
+                result.append("fizz\n");
+            } else if (i % 7 == 0) {
+                result.append("buzz\n");
+            } else {
+                result.append(i).append("\n");
+            }
+        }
+        return result.toString();
+    }
+
+    // Задание 2: Вывод строки задом наперёд
+    public static String reverseString() {
+        String str = "swag and nike pro";
+        StringBuilder reversed = new StringBuilder();
+
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reversed.append(str.charAt(i));
+        }
+
+        return reversed.toString(); // Вернёт "llatsni ekam"
+    }
+
+    // Задание 3: Решение квадратного уравнения
+    public static String solveQuadraticEquation(double a, double b, double c) {
+        double discriminant = b * b - 4 * a * c;
+        if (discriminant > 0) {
+            double root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            double root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            return "Корни уравнения: " + root1 + " и " + root2;
+        } else if (discriminant == 0) {
+            double root = -b / (2 * a);
+            return "Один корень: " + root;
+        } else {
+            return "Нет вещественных корней";
+        }
+    }
+
+    // Задание 4: Вычисление суммы ряда
+    public static double calculateSumOfSeries() {
+        double sum = 0;
+        int n = 2;
+
+        while (true) {
+            double term = 1.0 / (n * n + n - 2);
+            if (term < 1e-6) {
+                break;
+            }
+            sum += term;
+            n++;
+        }
+
+        return sum;
+    }
+
+    // Задание 5: Проверка строки на палиндром
+    public static boolean checkPalindrome(String str) {
+        int length = str.length();
+        for (int i = 0; i < length / 2; i++) {
+            if (str.charAt(i) != str.charAt(length - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nВыберите задание для выполнения:");
+            System.out.println("1 - FizzBuzz");
+            System.out.println("2 - Вывод строки задом наперёд");
+            System.out.println("3 - Решение квадратного уравнения");
+            System.out.println("4 - Вычисление суммы ряда");
+            System.out.println("5 - Проверка строки на палиндром");
+            System.out.println("6 - Выход");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Чистка ввода после выбора
+
+            switch (choice) {
+                case 1:
+                    System.out.println(fizzBuzz());
+                    break;
+                case 2:
+                    System.out.println(reverseString());
+                    break;
+                case 3:
+                    System.out.print("Введите коэффициенты a, b и c: ");
+                    double a = scanner.nextDouble();
+                    double b = scanner.nextDouble();
+                    double c = scanner.nextDouble();
+                    System.out.println(solveQuadraticEquation(a, b, c));
+                    break;
+                case 4:
+                    System.out.println("Сумма ряда: " + calculateSumOfSeries());
+                    break;
+                case 5:
+                    System.out.print("Введите строку: ");
+                    String str = scanner.nextLine();
+                    if (checkPalindrome(str)) {
+                        System.out.println("Строка является палиндромом");
+                    } else {
+                        System.out.println("Строка не является палиндромом");
+                    }
+                    break;
+                case 6:
+                    System.out.println("Выход...");
+                    return;
+                default:
+                    System.out.println("Неверный выбор, попробуйте снова.");
+            }
+        }
+    }
+}
